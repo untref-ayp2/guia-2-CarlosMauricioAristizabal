@@ -45,10 +45,6 @@ func main() {
 	q.Enqueue(1)
 	q.Enqueue(2)
 
-	//Modificamos la cola sin usar los métodos definidos
-	q[0] = "Hola"
-	q[1] = "Mundo"
-
 	v, err = q.Dequeue()
 	for err == nil {
 		fmt.Printf("%s", v)
