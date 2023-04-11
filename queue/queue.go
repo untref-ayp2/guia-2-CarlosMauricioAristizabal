@@ -39,7 +39,8 @@ func (q *Queue) IsEmpty() bool {
 }
 
 type QueueS struct {
-	pila stack.Stack
+	pila1 stack.Stack
+	pila2 stack.Stack
 }
 
 func (q *QueueS) Enqueue(v any) {

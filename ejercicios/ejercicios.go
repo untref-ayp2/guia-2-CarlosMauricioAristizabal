@@ -2,12 +2,23 @@ package ejercicios
 
 import (
 	"guia2/queue"
+	"guia2/stack"
 )
 
-func InvertirCadena(string) string {
+func InvertirCadena(cadena string) string {
 	//TODO
-	string := "borar"
-	return string
+	var s stack.Stack
+	var nuevaCadena string
+	for _, v := range cadena {
+		s.Push(string(v))
+	}
+
+	c, err := s.Pop()
+	for err == nil {
+
+		c, err = s.Pop()
+	}
+	return nuevaCadena
 }
 
 func Palindromo(string) bool {
