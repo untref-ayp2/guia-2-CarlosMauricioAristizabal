@@ -39,21 +39,31 @@ func (q *Queue) IsEmpty() bool {
 }
 
 type QueueS struct {
-	pila stack.Stack
+	inbox  stack.Stack
+	outbox stack.Stack
 }
 
 func (q *QueueS) Enqueue(v any) {
-	//TODO
+	q.inbox.Push(v)
 }
 
 func (q *QueueS) Dequeue() (any, error) {
-	//TODO
+	if q.IsEmpty() {
+		for !q.inbox.IsEmpty() {
+			valor, _ := q.inbox.Pop()
+			q.outbox.Push(valor)
+		}
+	}
+	return q.outbox.Pop()
 }
 
 func (q *QueueS) IsEmpty() bool {
-
+	return q.inbox.IsEmpty()
 }
 
 func (q *QueueS) Front() (any, error) {
-	//TODO
+	if q.IsEmpty() {
+		return nil, errors.New("queue is empty")
+	}
+	return q.inbox.Top()
 }
