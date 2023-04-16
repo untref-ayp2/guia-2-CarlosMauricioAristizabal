@@ -24,10 +24,32 @@ func Palindromo(texto string) bool {
 	return texto == textoInvertido
 }
 
-func Balanceada(string) bool {
-	//TODO
-	bool := true
-	return bool
+func Balanceada(cadena string) bool {
+	balanceada := true
+	var pila stack.Stack
+	i := 0
+	for i < len(cadena) && balanceada {
+		llave := string(cadena[i])
+
+		if (llave == "{") || (llave == "(") || (llave == "[") {
+			pila.Push(llave)
+
+		} else {
+			value, _ := pila.Top()
+			switch {
+			case (llave == string(")")) && (value == string("(")):
+				pila.Pop()
+			case (llave == string("}")) && (value == string("{")):
+				pila.Pop()
+			case (llave == string("]")) && (value == string("[")):
+				pila.Pop()
+			default:
+				balanceada = false
+			}
+		}
+		i++
+	}
+	return balanceada
 }
 
 func UnirColas(q1, q2 queue.Queue) queue.Queue {

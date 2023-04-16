@@ -31,14 +31,16 @@ func TestBalanceada(t *testing.T) {
 
 func TestUnirColas(t *testing.T) {
 	var q1 queue.Queue
+	var q2 queue.Queue
+	var q12_esperado queue.Queue
+
 	q1.Enqueue(1)
 	q1.Enqueue(2)
 	q1.Enqueue(3)
 
-	var q2 queue.Queue
 	q2.Enqueue(5)
 	q2.Enqueue(7)
-	var q12_esperado queue.Queue
+
 	q12_esperado.Enqueue(1)
 	q12_esperado.Enqueue(2)
 	q12_esperado.Enqueue(3)
@@ -46,7 +48,7 @@ func TestUnirColas(t *testing.T) {
 	q12_esperado.Enqueue(7)
 
 	q12_dado := ejercicios.UnirColas(q1, q2)
-	if !cmp.Equal(q12_dado, q12_esperado) {
+	if !cmp.Equal(q12_dado.Show(), q12_esperado.Show()) {
 		t.Error("UnirColas falla")
 	}
 }

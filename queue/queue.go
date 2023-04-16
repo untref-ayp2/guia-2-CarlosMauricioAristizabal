@@ -48,7 +48,7 @@ func (q *QueueS) Enqueue(v any) {
 }
 
 func (q *QueueS) Dequeue() (any, error) {
-	if q.IsEmpty() {
+	if !q.IsEmpty() {
 		for !q.inbox.IsEmpty() {
 			valor, _ := q.inbox.Pop()
 			q.outbox.Push(valor)
@@ -66,4 +66,8 @@ func (q *QueueS) Front() (any, error) {
 		return nil, errors.New("queue is empty")
 	}
 	return q.inbox.Top()
+}
+
+func (q *Queue) Show() []any {
+	return q.cola
 }
