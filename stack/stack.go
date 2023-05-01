@@ -35,3 +35,14 @@ func (s *Stack) Top() (any, error) {
 func (s *Stack) IsEmpty() bool {
 	return len(s.pila) == 0
 }
+func (s *Stack) BuscarEnPila(buscado any) bool {
+	copiapila := s
+
+	for !copiapila.IsEmpty() {
+		valor, _ := copiapila.Pop()
+		if buscado == valor {
+			return true
+		}
+	}
+	return false
+}
